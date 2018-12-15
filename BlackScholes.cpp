@@ -50,7 +50,7 @@ double BlackScholes::GenericGenerationRandomPathsUnderlyingPrices()
 		s_k[i] = underlying_k;
 	}
 
-	//payoff = Payoff(s_k);
+	payoff = option->Payoff(s_k,m);
 
 	return(payoff);
 }

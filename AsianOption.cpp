@@ -86,6 +86,9 @@ double* AsianOption::GetMaturitiesCollection()
 	return residualMaturities;
 }
 
+double AsianOption::IntermediateBinLatticeIteration(double UpdatePrice, double PayOffTemp){
+	return UpdatePrice;
+}
 AsianOption::~AsianOption()
 {
 }

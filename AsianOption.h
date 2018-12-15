@@ -24,7 +24,7 @@ public:
 	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue);// = 0, double * underlyingCollection = NULL);
 	virtual double GetNbMaturities();
 	virtual double* GetMaturitiesCollection();
-	
+	virtual double IntermediateBinLatticeIteration(double UpdatePrice, double PayOffTemp);
 // Destructor :
 	~AsianOption();
 	
