@@ -85,8 +85,8 @@ double CRR::ComputeUpdatePrice(double optionPriceDown, double optionPriceUP, dou
 {
 	double updatePrice = exp(-option->r * option->T/nbIterations)*(NeutralRiskProba(nbIterations)*optionPriceUP + (1 - NeutralRiskProba(nbIterations))*optionPriceDown);
 	
-	updatePrice = option->IntermediateBinLatticeIteration(updatePrice, option->Payoff(underlyingCurrent));
-	cout << "Update Price :" << updatePrice << " -- " << NeutralRiskProba(nbIterations) <<  endl;
+	updatePrice = option->IntermediateBinLatticeIteration(updatePrice, option->Payoff(&underlyingCurrent,1));
+	//cout << "Update Price :" << updatePrice << " -- " << NeutralRiskProba(nbIterations) <<  endl;
 	
 	return(updatePrice);
 }
@@ -96,9 +96,9 @@ BinLattice<BinLatticeNode> CRR::CRRPricing()
 	double updatePriceUp, updatePriceDown, underlyingCurrent;
 	for(int j = 0; j <= nbIterations; j++)
 	{
-		binlattice.Lattice[nbIterations][j].updatePrice = option->Payoff(binlattice.Lattice[nbIterations][j].underlyingValue);
+		binlattice.Lattice[nbIterations][j].updatePrice = option->Payoff(&(binlattice.Lattice[nbIterations][j].underlyingValue),1);
 		binlattice.Lattice[nbIterations][j].exercisePolicy = false;
-			if (binlattice.Lattice[nbIterations][j].updatePrice <= option->Payoff(binlattice.Lattice[nbIterations][j].underlyingValue))
+			if (binlattice.Lattice[nbIterations][j].updatePrice <= option->Payoff(&(binlattice.Lattice[nbIterations][j].underlyingValue),1))
 			{ 
 				binlattice.Lattice[nbIterations][j].exercisePolicy = true;
 			}
@@ -113,7 +113,7 @@ BinLattice<BinLatticeNode> CRR::CRRPricing()
 			updatePriceDown = binlattice.Lattice[i+1][j+1].updatePrice;
 			binlattice.Lattice[i][j].updatePrice = ComputeUpdatePrice(updatePriceDown, updatePriceUp, underlyingCurrent);
 			binlattice.Lattice[i][j].exercisePolicy = false;
-			if (binlattice.Lattice[i][j].updatePrice < option->Payoff(underlyingCurrent))
+			if (binlattice.Lattice[i][j].updatePrice < option->Payoff(&underlyingCurrent, 1))
 			{ 
 				binlattice.Lattice[i][j].exercisePolicy = true;
 			}
@@ -132,7 +132,7 @@ double CRR::GetUnderlyingValue(int line, int column)
 
 double CRR::GetPayoff(int line, int column)
 {
-	double payoff = option->Payoff(binlattice.Lattice[line][column].underlyingValue);
+	double payoff = option->Payoff(&(binlattice.Lattice[line][column].underlyingValue),1);
 	return(payoff);
 }
 
@@ -180,7 +180,7 @@ double CRR::ClosedFormCRR(int nbIterations)
 	{
 		binomialCoeff = Factorielle(nbIterations) / (Factorielle(i)*Factorielle(nbIterations - i));
 		underlyingValue = ComputeUnderlyingValue(i, nbIterations - i);
-		payoff = option->Payoff(underlyingValue);
+		payoff = option->Payoff(&underlyingValue, 1);
 		pricingExpectancy = pow(1 - NeutralRiskProba(nbIterations), nbIterations - i) * pow(NeutralRiskProba(nbIterations), i) * payoff;
 		price = price + binomialCoeff * pricingExpectancy;
 	}

@@ -21,8 +21,10 @@ public:
 	void SetResidualMaturities(double* newResidualMaturities);
 
 // Other Methods :
-	virtual double Payoff(double underlyingValue);// = 0, double * underlyingCollection = NULL);
-	virtual double AsianPricing(int m, int n);
+	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue);// = 0, double * underlyingCollection = NULL);
+	virtual double GetNbMaturities();
+	virtual double* GetMaturitiesCollection();
+	
 // Destructor :
 	~AsianOption();
 	

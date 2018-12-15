@@ -12,15 +12,15 @@ EuropeanOption::EuropeanOption(double r, double sigma, double K, double T, doubl
 double EuropeanOption::IntermediateBinLatticeIteration(double UpdatePrice, double PayOffTemp){
 	return UpdatePrice;
 }
-double EuropeanOption::Payoff(double underlyingValue)
+double EuropeanOption::Payoff(double* underlyingValue, int nbUnderlyingValue)
 {
 	double payoff = 0;
 	if (type == typeOption::call)
 	{
 		//cout << "The option is a call : " << endl;
-		if (underlyingValue - K > 0)
+		if (underlyingValue[0] - K > 0)
 		{
-			payoff = underlyingValue - K;
+			payoff = underlyingValue[0] - K;
 			//cout << "payoff : " << payoff << endl;
 		}
 		else
@@ -32,9 +32,9 @@ double EuropeanOption::Payoff(double underlyingValue)
 	else
 	{
 		//cout << "The option is a put : " << endl;
-		if (K - underlyingValue > 0)
+		if (K - underlyingValue[0] > 0)
 		{
-			payoff = K - underlyingValue;
+			payoff = K - underlyingValue[0];
 			//cout << "payoff : " << payoff << endl;
 		}
 		else
@@ -46,11 +46,21 @@ double EuropeanOption::Payoff(double underlyingValue)
 	return(payoff);
 }
 
+double EuropeanOption::GetNbMaturities()
+{
+	return 1;
+}
+double* EuropeanOption::GetMaturitiesCollection()
+{
+	return &T;
+}
 double EuropeanOption::EuropeanPricingFromCRR(CRR crr)
 {
 	BinLatticeNode firstNodeCRR = crr.GetFirstNode();
 	double europeanOptionPrice = firstNodeCRR.updatePrice;
 	return(europeanOptionPrice);
+	
+	//return crr.GetFirstNode().updatePrice;
 }
 
 EuropeanOption::~EuropeanOption()

@@ -9,12 +9,12 @@ DigitalOption::DigitalOption(double r, double sigma, double K, double T, double 
 
 }
 
-double DigitalOption::Payoff(double underlyingValue)
+double DigitalOption::Payoff(double* underlyingValue, int nbUnderlyingValue)
 {
 	double payoff = 0;
 	if (type == typeOption::call)
 	{
-		if (K < underlyingValue)
+		if (K < underlyingValue[0])
 		{
 			payoff = 1;
 		}
@@ -25,7 +25,7 @@ double DigitalOption::Payoff(double underlyingValue)
 	}
 	else
 	{
-		if (K < underlyingValue)
+		if (K < underlyingValue[0])
 		{
 			payoff = 0;
 		}
@@ -37,11 +37,14 @@ double DigitalOption::Payoff(double underlyingValue)
 	return(payoff);
 }
 
-double DigitalOption::ComputationOptionPrice(int n)
+double DigitalOption::GetNbMaturities()
 {
-	double t_k[1];
-	t_k[0] = T;
-	return this->GenericComputationOptionPrice(1, n, t_k);
+	return 1;
+}
+
+double* DigitalOption::GetMaturitiesCollection()
+{
+	return &T;
 }
 
 DigitalOption::~DigitalOption()

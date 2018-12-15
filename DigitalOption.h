@@ -9,9 +9,9 @@ public:
 	DigitalOption(double r, double sigma, double K, double T, double S, double b, typeOption type);
 
 // Other Methods :
-	virtual double Payoff(double underlyingValue);
-	virtual double ComputationOptionPrice(int N);
-	
+	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue);
+	virtual double GetNbMaturities();
+	virtual double* GetMaturitiesCollection();
 // Destructor :
 	~DigitalOption();
 

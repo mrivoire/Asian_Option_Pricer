@@ -41,14 +41,14 @@ void AsianOption::SetResidualMaturities(double* newResidualMaturities)
 	residualMaturities = newResidualMaturities;
 }
 
-double AsianOption::Payoff(double underlyingValue)// = 0, double * underlyingCollection)
+double AsianOption::Payoff(double* underlyingValue, int nbUnderlyingValue)
 {
 	int m = nbUnderlyingValues;
 	double payoff = 0;
 	double meanUnderlyingValues = 0;
 	for (int i = 0; i < m; i++)
 	{
-		meanUnderlyingValues = meanUnderlyingValues + underlyingCollection[i];
+		meanUnderlyingValues = meanUnderlyingValues + underlyingValue[i];
 	}
 	meanUnderlyingValues = meanUnderlyingValues / m;
 	if (type == typeOption::call)
@@ -76,10 +76,14 @@ double AsianOption::Payoff(double underlyingValue)// = 0, double * underlyingCol
 	return(payoff);
 }
 
-double AsianOption::AsianPricing(int m, int n)
+double AsianOption::GetNbMaturities()
 {
-	double asianOptionPrice = GenericComputationOptionPrice(m, n, residualMaturities);
-	return(asianOptionPrice);
+	return nbUnderlyingValues;
+}
+
+double* AsianOption::GetMaturitiesCollection()
+{
+	return residualMaturities;
 }
 
 AsianOption::~AsianOption()

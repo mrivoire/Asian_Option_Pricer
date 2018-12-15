@@ -8,6 +8,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="BlackScholes.cpp"/>
+    <File Name="BlackScholes.h"/>
     <File Name="AsianOption.cpp"/>
     <File Name="AsianOption.h"/>
     <File Name="ConsoleColor.cpp"/>

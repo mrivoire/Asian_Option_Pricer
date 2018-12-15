@@ -12,15 +12,15 @@ double AmericanOption::IntermediateBinLatticeIteration(double UpdatePrice, doubl
 	return max(UpdatePrice, PayOffTemp);
 }
 
-double AmericanOption::Payoff(double underlyingValue)
+double AmericanOption::Payoff(double* underlyingValue, int nbUnderlyingValue)
 {
 	double payoff = 0;
 	if (type == typeOption::call)
 	{
 		//cout << "The option is a call : " << endl;
-		if (underlyingValue - K > 0)
+		if (underlyingValue[0] - K > 0)
 		{
-			payoff = underlyingValue - K;
+			payoff = underlyingValue[0] - K;
 			//cout << "payoff : " << payoff << endl;
 		}
 		else
@@ -32,9 +32,9 @@ double AmericanOption::Payoff(double underlyingValue)
 	else
 	{
 		//cout << "The option is a put : " << endl;
-		if (K - underlyingValue > 0)
+		if (K - underlyingValue[0] > 0)
 		{
-			payoff = K - underlyingValue;
+			payoff = K - underlyingValue[0];
 			//cout << "payoff : " << payoff << endl;
 		}
 		else
@@ -51,6 +51,16 @@ double AmericanOption::AmericanPricingFromCRR(CRR crr, int ligne, int column)
 	BinLatticeNode node = crr.binlattice.Lattice[ligne][column];
 	double americanOptionPrice = node.updatePrice;
 	return(americanOptionPrice);
+}
+
+double AmericanOption::GetNbMaturities()
+{
+	return 1;
+}
+
+double* AmericanOption::GetMaturitiesCollection()
+{
+	return &T;
 }
 
 AmericanOption::~AmericanOption()

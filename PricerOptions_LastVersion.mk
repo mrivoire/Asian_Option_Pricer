@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=HP
-Date                   :=14/12/2018
+Date                   :=15/12/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,7 +62,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinLatticeNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IntermediateDirectory)/AsianOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/EuropeanOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) $(IntermediateDirectory)/AmericanOption.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinLatticeNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IntermediateDirectory)/AsianOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/EuropeanOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) $(IntermediateDirectory)/AmericanOption.cpp$(ObjectSuffix) \
+	
 
 
 
@@ -148,6 +149,14 @@ $(IntermediateDirectory)/EuropeanOption.cpp$(DependSuffix): EuropeanOption.cpp
 
 $(IntermediateDirectory)/EuropeanOption.cpp$(PreprocessSuffix): EuropeanOption.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EuropeanOption.cpp$(PreprocessSuffix) EuropeanOption.cpp
+
+$(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix): BlackScholes.cpp $(IntermediateDirectory)/BlackScholes.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/BlackScholes.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/BlackScholes.cpp$(DependSuffix): BlackScholes.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BlackScholes.cpp$(DependSuffix) -MM BlackScholes.cpp
+
+$(IntermediateDirectory)/BlackScholes.cpp$(PreprocessSuffix): BlackScholes.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BlackScholes.cpp$(PreprocessSuffix) BlackScholes.cpp
 
 $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix): CRR.cpp $(IntermediateDirectory)/CRR.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/CRR.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) $(IncludePath)

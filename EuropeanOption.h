@@ -11,13 +11,14 @@ public:
 	
 // Other Methods : 
 // Payoff : 
-	virtual double Payoff(double underlyingValue);
+	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue);
 	virtual double IntermediateBinLatticeIteration(double UpdatePrice, double PayOffTemp);
 // Pricing of European Options from CRR
 	double EuropeanPricingFromCRR(CRR crr);
 	
-// Option Pricing :
-	//virtual double ComputationOptionPrice(int N);
+// Pricing of European Options from BlackScholes
+	virtual double GetNbMaturities();
+	virtual double* GetMaturitiesCollection();
 	
 // Destructor : 
 	~EuropeanOption();

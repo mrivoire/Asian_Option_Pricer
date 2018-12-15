@@ -19,6 +19,8 @@ double GetS();
 double GetT();
 double Getr();
 double Getb();
+virtual double GetNbMaturities() = 0;
+virtual double* GetMaturitiesCollection() = 0;
 
 // Setters : 
 void SetSigma(double newSigma);
@@ -38,14 +40,9 @@ void Setb(double newb);
 	double ComputePriceOption(int n, string methodChoice);
 	
 // Payoff : 
-	virtual double Payoff(double underlyingValue) = 0;
+	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue) = 0;
 	virtual double IntermediateBinLatticeIteration(double UpdatePrice, double PayOffTemp) = 0;
 
-// Pricing by Random Paths Generation : Monte-Carlo Method and Wiener Process
-	double * TimeGeneration(int nbIterations, double init, double end); // h = pas de hachage ou de discrétisation
-	double GenericGenerationRandomPathsUnderlyingPrices(int m, double * t_k);
-	double GenericComputationOptionPrice(int m, int N, double * t_k);
-	
 // Display of an option characteristics :
 	friend std::ostream& operator<<(std::ostream&, const AbstractOption& option);
 	

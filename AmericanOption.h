@@ -12,9 +12,11 @@ public:
 	AmericanOption(double r, double sigma, double K, double T, double S, double b, typeOption type);
 	
 // Other Methods : 
-	virtual double Payoff(double underlyingValue);
+	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue);
 	virtual double IntermediateBinLatticeIteration(double UpdatePrice, double PayOffTemp);
-// Pricing of American Options from CRR 
+	virtual double GetNbMaturities();
+	virtual double* GetMaturitiesCollection()
+;// Pricing of American Options from CRR 
 	double AmericanPricingFromCRR(CRR crr, int line, int column);
 	
 // Destructor :
