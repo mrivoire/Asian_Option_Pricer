@@ -180,7 +180,7 @@ double CRR::ClosedFormCRR(int nbIterations)
 	{
 		binomialCoeff = Factorielle(nbIterations) / (Factorielle(i)*Factorielle(nbIterations - i));
 		underlyingValue = ComputeUnderlyingValue(i, nbIterations - i);
-		payoff = option->Payoff(&underlyingValue, 1);
+		payoff = option->Payoff(&underlyingValue, 1); // Test
 		pricingExpectancy = pow(1 - NeutralRiskProba(nbIterations), nbIterations - i) * pow(NeutralRiskProba(nbIterations), i) * payoff;
 		price = price + binomialCoeff * pricingExpectancy;
 	}
