@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=HP
-Date                   :=15/12/2018
+Date                   :=21/12/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinLatticeNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IntermediateDirectory)/AsianOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/EuropeanOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) $(IntermediateDirectory)/AmericanOption.cpp$(ObjectSuffix) \
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinLatticeNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IntermediateDirectory)/AsianOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/EuropeanOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) $(IntermediateDirectory)/AmericanOption.cpp$(ObjectSuffix) \
 	
 
 
@@ -102,6 +102,14 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
+$(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix): AbstractOption.cpp $(IntermediateDirectory)/AbstractOption.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/AbstractOption.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/AbstractOption.cpp$(DependSuffix): AbstractOption.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/AbstractOption.cpp$(DependSuffix) -MM AbstractOption.cpp
+
+$(IntermediateDirectory)/AbstractOption.cpp$(PreprocessSuffix): AbstractOption.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/AbstractOption.cpp$(PreprocessSuffix) AbstractOption.cpp
+
 $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix): DigitalOption.cpp $(IntermediateDirectory)/DigitalOption.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/DigitalOption.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/DigitalOption.cpp$(DependSuffix): DigitalOption.cpp
@@ -117,14 +125,6 @@ $(IntermediateDirectory)/BinLatticeNode.cpp$(DependSuffix): BinLatticeNode.cpp
 
 $(IntermediateDirectory)/BinLatticeNode.cpp$(PreprocessSuffix): BinLatticeNode.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BinLatticeNode.cpp$(PreprocessSuffix) BinLatticeNode.cpp
-
-$(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix): AbstractOption.cpp $(IntermediateDirectory)/AbstractOption.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/AbstractOption.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/AbstractOption.cpp$(DependSuffix): AbstractOption.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/AbstractOption.cpp$(DependSuffix) -MM AbstractOption.cpp
-
-$(IntermediateDirectory)/AbstractOption.cpp$(PreprocessSuffix): AbstractOption.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/AbstractOption.cpp$(PreprocessSuffix) AbstractOption.cpp
 
 $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix): ConsoleColor.cpp $(IntermediateDirectory)/ConsoleColor.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/ConsoleColor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IncludePath)

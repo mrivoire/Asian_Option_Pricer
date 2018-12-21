@@ -5,7 +5,7 @@ BlackScholes::BlackScholes()
 }
 
 // Options Pricer by Random Path Generation : Monte-Carlo Methods and Wiener Process
-double * BlackScholes::TimeGeneration(int nbIterations, double init, double end)
+double * BlackScholes::TimeGeneration(int nbIterations, int init, int end)
 {
 	double h = (end - init) / nbIterations;
 	double * residualMaturities = (double*)malloc(((end - init)/h + 1)*sizeof(double));
@@ -34,7 +34,7 @@ double BlackScholes::GenericGenerationRandomPathsUnderlyingPrices()
 			x = 1 - 2 * (rand() / (double)RAND_MAX);
 			y = 1 - 2 * (rand() / (double)RAND_MAX);
 			s = x * x + y * y;
-		} while (s > 0 || s > 1);
+		} while (s <= 0 || s > 1);
 
 		z = x * sqrt(-2 * log(s) / s);
 		z_k[i] = z; // Contient les variables aléatoires gaussiennes permettant de calculer les valeurs du sous-jacent à différentes dates t_k 
@@ -44,14 +44,22 @@ double BlackScholes::GenericGenerationRandomPathsUnderlyingPrices()
 	s_k[0] = option->S;
 	double payoff = 0;
 
-	for (int i = 1; i <= m; i++)
+	for (int i = 1; i < m; i++)
 	{
-		underlying_k = s_k[i - 1] * exp(option->r - pow(option->sigma, 2) / 2)*(t_k[i] - t_k[i - 1]) + option->sigma * sqrt(t_k[i] - t_k[i - 1])*z_k[i];
+		underlying_k = s_k[i - 1] * exp((option->r - pow(option->sigma, 2) / 2)*(t_k[i] - t_k[i - 1]) + option->sigma * sqrt(t_k[i] - t_k[i - 1])*z_k[i]);
+		z=t_k[i] - t_k[i - 1];
 		s_k[i] = underlying_k;
 	}
 
 	payoff = option->Payoff(s_k,m);
-
+	cout << payoff << " " ;
+	for (int l=0; l<m; l++){
+		cout << t_k[l] << "/" << z_k[l] << "/" << s_k[l] << " -- ";
+	}
+	cout << endl;
+	/*for (int l=0; l<m; l++){
+		cout << z_k[l] << endl;
+	}*/
 	return(payoff);
 }
 
