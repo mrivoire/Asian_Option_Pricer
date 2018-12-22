@@ -47,12 +47,14 @@ double BlackScholes::GenericGenerationRandomPathsUnderlyingPrices()
 	for (int i = 1; i < m; i++)
 	{
 		underlying_k = s_k[i - 1] * exp((option->r - pow(option->sigma, 2) / 2)*(t_k[i] - t_k[i - 1]) + option->sigma * sqrt(t_k[i] - t_k[i - 1])*z_k[i]);
-		z=t_k[i] - t_k[i - 1];
+		//z=t_k[i] - t_k[i - 1];
 		s_k[i] = underlying_k;
 	}
 
 	payoff = option->Payoff(s_k,m);
 	cout << payoff << " " ;
+	cout << "Random Paths Generation : " << endl;
+	cout << endl;
 	for (int l=0; l<m; l++){
 		cout << t_k[l] << "/" << z_k[l] << "/" << s_k[l] << " -- ";
 	}

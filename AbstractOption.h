@@ -31,13 +31,6 @@ void Setr(double newr);
 void Setb(double newb);
 
 // Other Methods : 
-// Monte-Carlo / Riemann Method : 
-	double Computed1();
-	double Computed2();
-	double EstimateNd_MonteCarlo(double d, int n);
-	double EstimateNd_RiemannLeft(double d, int n);
-	double EstimateNd_RiemannRight(double d, int n);
-	double ComputePriceOption(int n, string methodChoice);
 	
 // Payoff : 
 	virtual double Payoff(double* underlyingValue, int nbUnderlyingValue) = 0;

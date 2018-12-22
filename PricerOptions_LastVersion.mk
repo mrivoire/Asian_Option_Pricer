@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=HP
-Date                   :=21/12/2018
+Date                   :=22/12/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
@@ -62,8 +62,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinLatticeNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IntermediateDirectory)/AsianOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/EuropeanOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) $(IntermediateDirectory)/AmericanOption.cpp$(ObjectSuffix) \
-	
+Objects0=$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/AbstractOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/DigitalOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BinLatticeNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConsoleColor.cpp$(ObjectSuffix) $(IntermediateDirectory)/AsianOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/EuropeanOption.cpp$(ObjectSuffix) $(IntermediateDirectory)/BlackScholes.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRR.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/AmericanOption.cpp$(ObjectSuffix) 
 
 
 
@@ -94,6 +94,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(ObjectSuffix): EuropeanPriceAssessment.cpp $(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/EuropeanPriceAssessment.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(DependSuffix): EuropeanPriceAssessment.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(DependSuffix) -MM EuropeanPriceAssessment.cpp
+
+$(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(PreprocessSuffix): EuropeanPriceAssessment.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EuropeanPriceAssessment.cpp$(PreprocessSuffix) EuropeanPriceAssessment.cpp
+
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/HP/OneDrive - De Vinci/Documents/Cours/ESILV 4A IF/MyWorkspace/PricerOptions_LastVersion/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
