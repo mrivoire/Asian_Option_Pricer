@@ -11,12 +11,12 @@ using namespace std;
 int main(int argc, char **argv)
 {	
 	cout<< "------ PARAMETERS ------" << endl;
-	double interestRate = 0.05;
-	double volatility = 0.3;
-	double strike = 36;
+	double interestRate = 0.03;//0.05;
+	double volatility = 0.05;//0.3;
+	double strike = 1800; //36;
 	double maturity = 1;
-	double underlying = 35;
-	double constb = 0.5;
+	double underlying = 1800; //35;
+	double constb = 3; //0.5;
 	typeOption type = typeOption::call;
 	
 	cout << endl;
